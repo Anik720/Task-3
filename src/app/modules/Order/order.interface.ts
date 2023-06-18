@@ -1,4 +1,4 @@
-import { Model, Schema, Types } from 'mongoose'
+import { Model, Types } from 'mongoose'
 import { IUser } from '../users/users.interface'
 import { ICow } from '../cow/cow.interface'
 
