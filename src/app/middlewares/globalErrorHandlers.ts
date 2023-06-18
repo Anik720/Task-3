@@ -7,6 +7,7 @@ import { errorLogger } from '../../shared/logger'
 import { ZodError } from 'zod'
 import handleZodError from '../../errors/handleZodError'
 import handleCastError from '../../errors/handleCastError'
+import handleDuplicateKeyError from '../../errors/handleDuplicateKeyError'
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
   //   if (err instanceof Error) {
   //     res.status(400).json({
@@ -31,6 +32,11 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     errorMessages = simplifiedErrorMessage.errorMessages
   } else if (err instanceof ZodError) {
     const simlifiedError = handleZodError(err)
+    statusCode = simlifiedError.statusCode
+    message = simlifiedError.message
+    errorMessages = simlifiedError.errorMessages
+  } else if (err.name === 'MongoError' && err.code === 11000) {
+    const simlifiedError = handleDuplicateKeyError(err)
     statusCode = simlifiedError.statusCode
     message = simlifiedError.message
     errorMessages = simlifiedError.errorMessages
