@@ -21,6 +21,7 @@ exports.breed = [
     'Kankrej',
 ];
 exports.cowFilterableFields = [
+    'searchTerm',
     'name',
     'age',
     'price',
@@ -29,14 +30,7 @@ exports.cowFilterableFields = [
     'weight',
     'label',
     'category',
+    'minPrice',
+    'maxPrice',
 ];
-exports.cowSearchableFields = [
-    'name',
-    'age',
-    'price',
-    'location',
-    'breed',
-    'weight',
-    'label',
-    'category',
-];
+exports.cowSearchableFields = ['location', 'breed', 'category'];

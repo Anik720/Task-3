@@ -25,28 +25,26 @@ const createOrder = (order) => __awaiter(void 0, void 0, void 0, function* () {
     const findCow = yield cow_model_1.default.findById({ _id: order.cow });
     // generate student id
     let newOrderAllData = null;
-    if (findBuyer && findBuyer.budget && findCow && findCow.price) {
-        if ((findBuyer === null || findBuyer === void 0 ? void 0 : findBuyer.budget) < (findCow === null || findCow === void 0 ? void 0 : findCow.price)) {
-            throw new ApiErrors_1.default(400, 'You have not enough budget.');
-        }
+    if (findBuyer && findCow && (findBuyer === null || findBuyer === void 0 ? void 0 : findBuyer.budget) < (findCow === null || findCow === void 0 ? void 0 : findCow.price)) {
+        throw new ApiErrors_1.default(400, 'You have not enough budget.');
     }
     else {
         const session = yield mongoose_1.default.startSession();
         try {
             session.startTransaction();
-            if (findCow && findCow.label) {
+            if (findCow) {
                 findCow.label = 'sold out';
             }
-            let newBudget;
-            if (findBuyer && findBuyer.budget && findCow && findCow.price) {
-                newBudget = (findBuyer === null || findBuyer === void 0 ? void 0 : findBuyer.budget) - (findCow === null || findCow === void 0 ? void 0 : findCow.price);
+            let newBudget = findBuyer && findCow ? (findBuyer === null || findBuyer === void 0 ? void 0 : findBuyer.budget) - (findCow === null || findCow === void 0 ? void 0 : findCow.price) : 0;
+            if (findBuyer) {
                 findBuyer.budget = newBudget;
             }
             const findSeller = yield users_model_1.default.findOne({ _id: findCow === null || findCow === void 0 ? void 0 : findCow.seller });
-            if (findSeller && findSeller.income && findCow && findCow.price) {
-                findSeller.income = findCow === null || findCow === void 0 ? void 0 : findCow.price;
-            }
             //array
+            if (findSeller) {
+                findSeller.income =
+                    findCow && findSeller ? (findCow === null || findCow === void 0 ? void 0 : findCow.price) + findSeller.income : 0;
+            }
             const newOrder = yield order_model_1.default.create([order], { session });
             if (!newOrder.length) {
                 throw new ApiErrors_1.default(http_status_1.default.BAD_REQUEST, 'Failed to create order');

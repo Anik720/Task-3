@@ -104,6 +104,38 @@ const getAllCows = async (
       })),
     })
   }
+  if (Object.keys(filtersData).length && filtersData?.maxPrice) {
+    const cowsFiltered = await Cow.find({
+      price: {
+        $lte: filtersData?.maxPrice,
+      },
+    })
+
+    return {
+      meta: {
+        page,
+        limit,
+        total: cowsFiltered.length,
+      },
+      data: cowsFiltered,
+    }
+  }
+  if (Object.keys(filtersData).length && filtersData?.minPrice) {
+    const cowsFiltered = await Cow.find({
+      price: {
+        $gte: filtersData?.minPrice,
+      },
+    })
+
+    return {
+      meta: {
+        page,
+        limit,
+        total: cowsFiltered.length,
+      },
+      data: cowsFiltered,
+    }
+  }
 
   const sortConditions: { [key: string]: SortOrder } = {}
 

@@ -9,7 +9,7 @@ const ApiErrors_1 = __importDefault(require("../../errors/ApiErrors"));
 const zod_1 = require("zod");
 const handleZodError_1 = __importDefault(require("../../errors/handleZodError"));
 const handleCastError_1 = __importDefault(require("../../errors/handleCastError"));
-const handleDuplicateKeyError_1 = __importDefault(require("../../errors/handleDuplicateKeyError"));
+const handleDuplicateFieldsDB_1 = __importDefault(require("../../errors/handleDuplicateFieldsDB"));
 const globalErrorHandler = (err, req, res, next) => {
     //   if (err instanceof Error) {
     //     res.status(400).json({
@@ -38,8 +38,8 @@ const globalErrorHandler = (err, req, res, next) => {
         message = simlifiedError.message;
         errorMessages = simlifiedError.errorMessages;
     }
-    else if (err.name === 'MongoError' && err.code === 11000) {
-        const simlifiedError = (0, handleDuplicateKeyError_1.default)(err);
+    else if (err.code === 11000) {
+        const simlifiedError = (0, handleDuplicateFieldsDB_1.default)(err);
         statusCode = simlifiedError.statusCode;
         message = simlifiedError.message;
         errorMessages = simlifiedError.errorMessages;

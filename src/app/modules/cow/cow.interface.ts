@@ -24,4 +24,6 @@ export type ICowFilters = {
   weight?: number
   label?: string
   category?: string
+  minPrice?: number
+  maxPrice?: number
 }

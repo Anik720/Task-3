@@ -15,30 +15,29 @@ const createOrder = async (order: IOrder): Promise<IOrder | null> => {
 
   // generate student id
   let newOrderAllData = null
-  if (findBuyer && findBuyer.budget && findCow && findCow.price) {
-    if (findBuyer?.budget < findCow?.price) {
-      throw new ApiError(400, 'You have not enough budget.')
-    }
+  if (findBuyer && findCow && findBuyer?.budget < findCow?.price) {
+    throw new ApiError(400, 'You have not enough budget.')
   } else {
     const session = await mongoose.startSession()
     try {
       session.startTransaction()
-      if (findCow && findCow.label) {
+      if (findCow) {
         findCow.label = 'sold out'
       }
 
-      let newBudget
-      if (findBuyer && findBuyer.budget && findCow && findCow.price) {
-        newBudget = findBuyer?.budget - findCow?.price
+      let newBudget =
+        findBuyer && findCow ? findBuyer?.budget - findCow?.price : 0
+      if (findBuyer) {
         findBuyer.budget = newBudget
       }
 
       const findSeller = await User.findOne({ _id: findCow?.seller })
-      if (findSeller && findSeller.income && findCow && findCow.price) {
-        findSeller.income = findCow?.price
-      }
 
       //array
+      if (findSeller) {
+        findSeller.income =
+          findCow && findSeller ? findCow?.price + findSeller.income : 0
+      }
       const newOrder = await Order.create([order], { session })
 
       if (!newOrder.length) {

@@ -105,6 +105,36 @@ const getAllCows = (filters, paginationOptions) => __awaiter(void 0, void 0, voi
             })),
         });
     }
+    if (Object.keys(filtersData).length && (filtersData === null || filtersData === void 0 ? void 0 : filtersData.maxPrice)) {
+        const cowsFiltered = yield cow_model_1.default.find({
+            price: {
+                $lte: filtersData === null || filtersData === void 0 ? void 0 : filtersData.maxPrice,
+            },
+        });
+        return {
+            meta: {
+                page,
+                limit,
+                total: cowsFiltered.length,
+            },
+            data: cowsFiltered,
+        };
+    }
+    if (Object.keys(filtersData).length && (filtersData === null || filtersData === void 0 ? void 0 : filtersData.minPrice)) {
+        const cowsFiltered = yield cow_model_1.default.find({
+            price: {
+                $gte: filtersData === null || filtersData === void 0 ? void 0 : filtersData.minPrice,
+            },
+        });
+        return {
+            meta: {
+                page,
+                limit,
+                total: cowsFiltered.length,
+            },
+            data: cowsFiltered,
+        };
+    }
     const sortConditions = {};
     if (sortBy && sortOrder) {
         sortConditions[sortBy] = sortOrder;

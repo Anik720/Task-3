@@ -6,7 +6,7 @@ import { paginationFields } from '../../../constants/pagination'
 import pick from '../../../shared/pick'
 import { CowService } from './cow.service'
 import { ICow } from './cow.interface'
-import { cowSearchableFields } from './cow.constant'
+import { cowFilterableFields, cowSearchableFields } from './cow.constant'
 const createCow: RequestHandler = catchAsync(
   async (req: Request, res: Response) => {
     const { ...cowData } = req.body
@@ -22,7 +22,7 @@ const createCow: RequestHandler = catchAsync(
 )
 
 const getAllCows = catchAsync(async (req: Request, res: Response) => {
-  const filters = pick(req.query, cowSearchableFields)
+  const filters = pick(req.query, cowFilterableFields)
   const paginationOptions = pick(req.query, paginationFields)
 
   const result = await CowService.getAllCows(filters, paginationOptions)

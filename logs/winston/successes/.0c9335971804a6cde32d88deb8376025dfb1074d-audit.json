@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\Golam Kibria Anik\\Desktop\\Jhankar\\copy\\logs\\winston\\successes\\.0c9335971804a6cde32d88deb8376025dfb1074d-audit.json",
+    "files": [
+        {
+            "date": 1687170304655,
+            "name": "C:\\Users\\Golam Kibria Anik\\Desktop\\Jhankar\\copy\\logs\\winston\\successes\\GK-2023-19-06-16.log",
+            "hash": "cba9db308fe03130d66f26c35e2604fe39483ef3973ceba959d344f2c3022abe"
+        }
+    ],
+    "hashType": "sha256"
+}

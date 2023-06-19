@@ -19,6 +19,7 @@ export const breed = [
 ]
 
 export const cowFilterableFields = [
+  'searchTerm',
   'name',
   'age',
   'price',
@@ -27,15 +28,8 @@ export const cowFilterableFields = [
   'weight',
   'label',
   'category',
+  'minPrice',
+  'maxPrice',
 ]
 
-export const cowSearchableFields = [
-  'name',
-  'age',
-  'price',
-  'location',
-  'breed',
-  'weight',
-  'label',
-  'category',
-]
+export const cowSearchableFields = ['location', 'breed', 'category']
