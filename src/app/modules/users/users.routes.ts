@@ -4,10 +4,10 @@ import validateRequest from '../../middlewares/validateRequest'
 
 const router = express.Router()
 
-router.post('/create-user', UserController.createUser)
-router.get('/:id', UserController.getSingleUser)
-router.patch('/:id', UserController.updateUser)
-router.delete('/:id', UserController.deleteUser)
+router.post('/auth/signup', UserController.createUser)
+router.get('/users/:id', UserController.getSingleUser)
+router.patch('/users/:id', UserController.updateUser)
+router.delete('/users/:id', UserController.deleteUser)
 
-router.get('/', UserController.getAllUsers)
+router.get('/users', UserController.getAllUsers)
 export const UserRouter = router

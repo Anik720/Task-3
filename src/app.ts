@@ -3,7 +3,7 @@ import cors from 'cors'
 
 import globalErrorHandler from './app/middlewares/globalErrorHandlers'
 import { UserRouter } from './app/modules/users/users.routes'
-
+import { AcademicSemesterRoutes } from './app/modules/academicSemester/academicSemester.route'
 import routes from './app/routes'
 import httpStatus from 'http-status'
 

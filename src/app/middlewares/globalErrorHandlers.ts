@@ -9,16 +9,6 @@ import handleZodError from '../../errors/handleZodError'
 import handleCastError from '../../errors/handleCastError'
 import handleDuplicateFieldsDB from '../../errors/handleDuplicateFieldsDB'
 const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
-  //   if (err instanceof Error) {
-  //     res.status(400).json({
-  //       error: err,
-  //     })
-  //   } else {
-  //     res.status(500).json({
-  //       errorss: err,
-  //     })
-  //   }
-
   let statusCode = 500
   let message = 'something went wrong!'
   let errorMessages: IGenericMessage[] = []

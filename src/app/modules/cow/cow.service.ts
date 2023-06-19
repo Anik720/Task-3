@@ -104,7 +104,32 @@ const getAllCows = async (
       })),
     })
   }
+
+  if (
+    Object.keys(filtersData).length &&
+    filtersData?.minPrice &&
+    Object.keys(filtersData).length &&
+    filtersData?.maxPrice
+  ) {
+    console.log(109)
+    const cowsFiltered = await Cow.find({
+      price: {
+        $gte: filtersData?.minPrice,
+        $lte: filtersData?.maxPrice,
+      },
+    })
+
+    return {
+      meta: {
+        page,
+        limit,
+        total: cowsFiltered.length,
+      },
+      data: cowsFiltered,
+    }
+  }
   if (Object.keys(filtersData).length && filtersData?.maxPrice) {
+    console.log(129)
     const cowsFiltered = await Cow.find({
       price: {
         $lte: filtersData?.maxPrice,
@@ -120,7 +145,9 @@ const getAllCows = async (
       data: cowsFiltered,
     }
   }
+
   if (Object.keys(filtersData).length && filtersData?.minPrice) {
+    console.log(147)
     const cowsFiltered = await Cow.find({
       price: {
         $gte: filtersData?.minPrice,

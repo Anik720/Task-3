@@ -6,7 +6,7 @@ import { OrderRouter } from '../modules/Order/order.route'
 const router = express.Router()
 const moduleRoutes = [
   {
-    path: '/users',
+    path: '/',
     route: UserRouter,
   },
   {
