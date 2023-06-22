@@ -11,15 +11,6 @@ const handleZodError_1 = __importDefault(require("../../errors/handleZodError"))
 const handleCastError_1 = __importDefault(require("../../errors/handleCastError"));
 const handleDuplicateFieldsDB_1 = __importDefault(require("../../errors/handleDuplicateFieldsDB"));
 const globalErrorHandler = (err, req, res, next) => {
-    //   if (err instanceof Error) {
-    //     res.status(400).json({
-    //       error: err,
-    //     })
-    //   } else {
-    //     res.status(500).json({
-    //       errorss: err,
-    //     })
-    //   }
     let statusCode = 500;
     let message = 'something went wrong!';
     let errorMessages = [];

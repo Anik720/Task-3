@@ -7,7 +7,7 @@ exports.CowRouter = void 0;
 const express_1 = __importDefault(require("express"));
 const cow_controller_1 = require("./cow.controller");
 const router = express_1.default.Router();
-router.post('/create-cow', cow_controller_1.CowController.createCow);
+router.post('/', cow_controller_1.CowController.createCow);
 router.get('/:id', cow_controller_1.CowController.getSingleCow);
 router.patch('/:id', cow_controller_1.CowController.updateCow);
 router.delete('/:id', cow_controller_1.CowController.deleteCow);

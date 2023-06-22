@@ -10,7 +10,7 @@ const order_route_1 = require("../modules/Order/order.route");
 const router = express_1.default.Router();
 const moduleRoutes = [
     {
-        path: '/users',
+        path: '/',
         route: users_routes_1.UserRouter,
     },
     {

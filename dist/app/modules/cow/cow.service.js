@@ -105,7 +105,28 @@ const getAllCows = (filters, paginationOptions) => __awaiter(void 0, void 0, voi
             })),
         });
     }
+    if (Object.keys(filtersData).length &&
+        (filtersData === null || filtersData === void 0 ? void 0 : filtersData.minPrice) &&
+        Object.keys(filtersData).length &&
+        (filtersData === null || filtersData === void 0 ? void 0 : filtersData.maxPrice)) {
+        console.log(109);
+        const cowsFiltered = yield cow_model_1.default.find({
+            price: {
+                $gte: filtersData === null || filtersData === void 0 ? void 0 : filtersData.minPrice,
+                $lte: filtersData === null || filtersData === void 0 ? void 0 : filtersData.maxPrice,
+            },
+        });
+        return {
+            meta: {
+                page,
+                limit,
+                total: cowsFiltered.length,
+            },
+            data: cowsFiltered,
+        };
+    }
     if (Object.keys(filtersData).length && (filtersData === null || filtersData === void 0 ? void 0 : filtersData.maxPrice)) {
+        console.log(129);
         const cowsFiltered = yield cow_model_1.default.find({
             price: {
                 $lte: filtersData === null || filtersData === void 0 ? void 0 : filtersData.maxPrice,
@@ -121,6 +142,7 @@ const getAllCows = (filters, paginationOptions) => __awaiter(void 0, void 0, voi
         };
     }
     if (Object.keys(filtersData).length && (filtersData === null || filtersData === void 0 ? void 0 : filtersData.minPrice)) {
+        console.log(147);
         const cowsFiltered = yield cow_model_1.default.find({
             price: {
                 $gte: filtersData === null || filtersData === void 0 ? void 0 : filtersData.minPrice,
