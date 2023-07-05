@@ -1,0 +1,12 @@
+{
+  errno: undefined,
+  code: 'ETIMEOUT',
+  syscall: 'queryTxt',
+  hostname: 'cluster0.qlt3k9h.mongodb.net',
+  level: 'error',
+  message: 'Failed queryTxt ETIMEOUT cluster0.qlt3k9h.mongodb.net',
+  stack: 'Error: queryTxt ETIMEOUT cluster0.qlt3k9h.mongodb.net\n' +
+    '    at QueryReqWrap.onresolve [as oncomplete] (node:internal/dns/promises:240:17)',
+  label: 'GK!',
+  timestamp: '2023-07-04T15:58:55.190Z'
+}
